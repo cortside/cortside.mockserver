@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32428.209
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cortside.MockServer", "Cortside.MockServer\Cortside.MockServer.csproj", "{34DB658B-2824-4B91-B2CD-730832740830}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cortside.MockServer.AccessControl", "Cortside.MockServer.AccessControl\Cortside.MockServer.AccessControl.csproj", "{39E44DD4-2F1F-4C1C-A760-DF9A359B3960}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{34DB658B-2824-4B91-B2CD-730832740830}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34DB658B-2824-4B91-B2CD-730832740830}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34DB658B-2824-4B91-B2CD-730832740830}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34DB658B-2824-4B91-B2CD-730832740830}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39E44DD4-2F1F-4C1C-A760-DF9A359B3960}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39E44DD4-2F1F-4C1C-A760-DF9A359B3960}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39E44DD4-2F1F-4C1C-A760-DF9A359B3960}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39E44DD4-2F1F-4C1C-A760-DF9A359B3960}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AAEC058E-6BE4-4103-AD1A-536B635E987E}
+	EndGlobalSection
+EndGlobal
