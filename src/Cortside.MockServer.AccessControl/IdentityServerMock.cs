@@ -35,6 +35,7 @@ namespace Cortside.MockServer.AccessControl {
                 .RespondWith(
                     Response.Create()
                         .WithStatusCode(200)
+                        .WithHeader("Content-Type", "application/json")
                         .WithBody(_ => JsonConvert.SerializeObject(idsConfiguration))
                     );
 
@@ -46,6 +47,7 @@ namespace Cortside.MockServer.AccessControl {
                 .RespondWith(
                     Response.Create()
                         .WithStatusCode(200)
+                        .WithHeader("Content-Type", "application/json")
                         .WithBody(_ => JsonConvert.SerializeObject(idsJwks))
                 );
 
