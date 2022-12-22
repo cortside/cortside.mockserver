@@ -64,7 +64,7 @@ namespace Cortside.MockServer.AccessControl {
                 server
                     .Given(
                         Request.Create().WithPath("/connect/token")
-                            .WithHeader(h => h.ContainsKey("Authorization") && h["Authorization"]?.FirstOrDefault() != null && h["Authorization"]?.FirstOrDefault().Replace("Basic ", "").DecodeBase64().Contains(subject.ClientId) == true)
+                            .WithHeader(h => h.ContainsKey("Authorization") && h["Authorization"]?.FirstOrDefault() != null && h["Authorization"].FirstOrDefault().StartsWith("Basic ") && h["Authorization"]?.FirstOrDefault().Replace("Basic ", "").DecodeBase64().Contains(subject.ClientId) == true)
                             .UsingPost()
                     )
                     .RespondWith(
