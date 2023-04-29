@@ -7,6 +7,8 @@ namespace Cortside.MockServer.AccessControl.Models {
         public string SubjectId { get; set; }
         public List<SubjectClaim> Claims { get; set; }
         public string UserType { get; set; }
+
+        // This site can be used to generate JWT tokens with desired values: http://jwtbuilder.jamiekurtz.com/
         public string ReferenceToken { get; set; }
         public List<Policy> Policies { get; set; }
     }
