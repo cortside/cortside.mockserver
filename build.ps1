@@ -136,7 +136,7 @@ Param(
 }
 
 # generate build.json
-$BuildNumber = (New-BuildJson -versionJsonPath $PSScriptRoot\src\version.json -BuildJsonPath $PSScriptRoot\src\build.json -buildCounter $buildCounter).build.version
+$BuildNumber = (New-BuildJson -versionJsonPath $PSScriptRoot\repository.json -BuildJsonPath $PSScriptRoot\src\build.json -buildCounter $buildCounter).build.version
 Write-Host "##teamcity[buildNumber '$BuildNumber']"
 $build = Set-DockerTag -branch $branch -buildNumber $BuildNumber -BuildJsonPath $PSScriptRoot\src\build.json
 $dockertag = $build.build.tag
@@ -172,7 +172,7 @@ if ($suffix){
 }
 
 # copy generated build.json to needed applications
-#cp .\src\build.json .\src\Cortside.WireMock.WebApi\build.json -force
+#cp .\src\build.json .\src\Cortside.Common.WebApi\build.json -force
 
 # build
 $args = "clean $PSScriptRoot\src"
@@ -181,5 +181,5 @@ $args = "restore $PSScriptRoot\src --packages $PSScriptRoot\src\packages"
 Invoke-Exe -cmd dotnet -args $args
 $args = "build $PSScriptRoot\src --no-restore --configuration $msbuildconfig /p:Version=$BuildNumber"
 Invoke-Exe -cmd dotnet -args $args
-#$args = "publish $PSScriptRoot\src\Cortside.WireMock.WebApi\Cortside.WireMock.WebApi.csproj --no-restore /p:Version=$BuildNumber"
+#$args = "publish $PSScriptRoot\src\Cortside.Common.WebApi\Cortside.Common.WebApi.csproj --no-restore /p:Version=$BuildNumber"
 #Invoke-Exe -cmd dotnet -args $args
