@@ -1,5 +1,15 @@
-# Release 1.1
+# Release 1.2
 
+|Commit|Date|Author|Message|
+|---|---|---|---|
+| b1b05cc | <span style="white-space:nowrap;">2023-01-02</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  update version
+| 1c9bf6e | <span style="white-space:nowrap;">2023-01-03</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  Merge branch 'master' into develop
+| 7f5f2e8 | <span style="white-space:nowrap;">2023-03-22</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  make ids connect/token endpoint more specific to client_credentials flow, allowing for other flows to be added to the server
+| 1697b1b | <span style="white-space:nowrap;">2023-04-28</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  add health check endpoint mocks
+| 572cdb3 | <span style="white-space:nowrap;">2023-06-15</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  (HEAD -> release/1.2, origin/develop, develop) update powershell scripts
+****
+
+# Release 1.1
 |Commit|Date|Author|Message|
 |---|---|---|---|
 | efb28c4 | <span style="white-space:nowrap;">2022-07-13</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  [feature/BOT-20220713] updated nuget packages
@@ -13,7 +23,6 @@
 | 30a4ea4 | <span style="white-space:nowrap;">2023-01-02</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  Merge pull request #4 from cortside/feature/BOT-20230102
 | e8a1783 | <span style="white-space:nowrap;">2023-01-02</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  (HEAD -> release/1.1, origin/develop, develop) initial changelog
 ****
-
 # Release 1.0
 |Commit|Date|Author|Message|
 |---|---|---|---|
