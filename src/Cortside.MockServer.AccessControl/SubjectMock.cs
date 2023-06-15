@@ -48,7 +48,7 @@ namespace Cortside.MockServer.AccessControl {
                 server
                     .Given(
                         Request.Create().WithPath("/connect/token")
-                            .WithBody(b => b?.Contains(subject.ClientId) == true)
+                            .WithBody(b => b?.Contains(subject.ClientId) == true && b?.Contains("client_credentials") == true)
                             .UsingPost()
                     )
                     .RespondWith(

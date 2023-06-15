@@ -1,3 +1,4 @@
+using System;
 using WireMock.RequestBuilders;
 using WireMock.ResponseBuilders;
 using WireMock.Server;
@@ -31,6 +32,21 @@ namespace Cortside.MockServer {
                 )
                 .RespondWith(
                     Response.Create()
+                        .WithTransformer()
+                        .WithBody("{\"service\":\"policyserver\",\"status\":\"OK\",\"healthy\":true,\"timestamp\":\"" + DateTime.UtcNow.ToString("o") +
+                                  "\",\"build\":{\"timestamp\":\"2023-04-07T17:32:18.3195Z\",\"version\":\"1.64.1684\",\"tag\":\"1.64.1684\",\"suffix\":\"\"}}")
+                        .WithStatusCode(200)
+                );
+
+            server
+                .Given(
+                    Request.Create().WithPath("/health").UsingGet()
+                )
+                .RespondWith(
+                    Response.Create()
+                        .WithTransformer()
+                        .WithBody("{\"service\":\"policyserver\",\"status\":\"OK\",\"healthy\":true,\"timestamp\":\"" + DateTime.UtcNow.ToString("o") +
+                                  "\",\"build\":{\"timestamp\":\"2023-04-07T17:32:18.3195Z\",\"version\":\"1.64.1684\",\"tag\":\"1.64.1684\",\"suffix\":\"\"}}")
                         .WithStatusCode(200)
                 );
 
