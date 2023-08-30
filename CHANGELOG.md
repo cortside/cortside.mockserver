@@ -1,3 +1,20 @@
+# Release 6.0
+
+* Update version number to match framework version (6.x)
+* Update projects to be net6.0
+* Update nuget dependencies to latest stable versions
+
+|Commit|Date|Author|Message|
+|---|---|---|---|
+| 3b76172 | <span style="white-space:nowrap;">2023-06-15</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  update version
+| 8c37e6a | <span style="white-space:nowrap;">2023-06-20</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  Merge branch 'master' into develop
+| 6364fcb | <span style="white-space:nowrap;">2023-06-26</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  [net6] update to net6
+| 2d80f69 | <span style="white-space:nowrap;">2023-06-26</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  (origin/net6, net6) [net6] use vs2022 builder image
+| 74ed0a4 | <span style="white-space:nowrap;">2023-06-26</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  Merge pull request #7 from cortside/net6
+| f185e41 | <span style="white-space:nowrap;">2023-07-17</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  update version to 6.x to be in line with dotnet and net6 version numbers
+| ee20347 | <span style="white-space:nowrap;">2023-08-29</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  (HEAD -> release/6.0, origin/develop, develop) update to latest nuget packages
+****
+
 # Release 1.2
 
 |Commit|Date|Author|Message|

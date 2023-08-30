@@ -10,42 +10,36 @@ namespace Cortside.MockServer {
             WriteIndented = true
         };
 
-        private readonly ILogger _logger;
+        private readonly ILogger logger;
 
         public WireMockLogger(ILogger logger) {
-            _logger = logger;
+            this.logger = logger;
         }
 
-        /// <see cref="IWireMockLogger.Debug"/>
         public void Debug(string formatString, params object[] args) {
-            _logger.Debug(formatString, args);
+            logger.Debug(formatString, args);
         }
 
-        /// <see cref="IWireMockLogger.Info"/>
         public void Info(string formatString, params object[] args) {
-            _logger.Information(formatString, args);
+            logger.Information(formatString, args);
         }
 
-        /// <see cref="IWireMockLogger.Warn"/>
         public void Warn(string formatString, params object[] args) {
-            _logger.Warning(formatString, args);
+            logger.Warning(formatString, args);
         }
 
-        /// <see cref="IWireMockLogger.Error(string, object[])"/>
         public void Error(string formatString, params object[] args) {
-            _logger.Error(formatString, args);
+            logger.Error(formatString, args);
         }
 
-        /// <see cref="IWireMockLogger.Error(string, Exception)"/>
         public void Error(string formatString, Exception exception) {
-            _logger.Error(formatString, exception);
+            logger.Error(formatString, exception);
         }
 
-        /// <see cref="IWireMockLogger.DebugRequestResponse"/>
         public void DebugRequestResponse(LogEntryModel logEntryModel, bool isAdminRequest) {
             string message = JsonSerializer.Serialize(logEntryModel, options);
 
-            _logger.Debug("Admin[{IsAdmin}] {Message}", isAdminRequest, message);
+            logger.Debug("Admin[{IsAdmin}] {Message}", isAdminRequest, message);
         }
     }
 }
