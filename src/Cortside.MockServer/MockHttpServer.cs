@@ -22,9 +22,7 @@ namespace Cortside.MockServer {
                 settings.Logger = new WireMockLogger(logger);
             }
 
-            if (mockServer == null) {
-                mockServer = WireMockServer.Start(settings);
-            }
+            mockServer = WireMockServer.Start(settings);
         }
 
         public MockHttpServer(string routePrefix, int? port = null, ILogger logger = null) : this(port, logger) {
