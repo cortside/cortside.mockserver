@@ -1,14 +1,13 @@
 using System;
 using WireMock.RequestBuilders;
 using WireMock.ResponseBuilders;
-using WireMock.Server;
 using WireMock.Util;
 
 namespace Cortside.MockServer.Mocks {
     public class CommonMock : IMockHttpMock {
-        public void Configure(WireMockServer server) {
-            server.AddCatchAllMapping();
-            server
+        public void Configure(MockHttpServer server) {
+            server.WireMockServer.AddCatchAllMapping();
+            server.WireMockServer
                 .Given(
                     Request.Create().WithPath("/".Split('?')[0]).UsingGet()
                     )
@@ -17,7 +16,7 @@ namespace Cortside.MockServer.Mocks {
                         .WithStatusCode(200)
                     );
 
-            server
+            server.WireMockServer
                 .Given(
                     Request.Create().WithPath("/").UsingGet()
                 )
@@ -26,7 +25,7 @@ namespace Cortside.MockServer.Mocks {
                         .WithStatusCode(200)
                 );
 
-            server
+            server.WireMockServer
                 .Given(
                     Request.Create().WithPath("/api/health").UsingGet()
                 )
@@ -38,7 +37,7 @@ namespace Cortside.MockServer.Mocks {
                         .WithStatusCode(200)
                 );
 
-            server
+            server.WireMockServer
                 .Given(
                     Request.Create().WithPath("/health").UsingGet()
                 )
@@ -50,7 +49,7 @@ namespace Cortside.MockServer.Mocks {
                         .WithStatusCode(200)
                 );
 
-            server.Given(Request.Create().WithPath("/api/sap")
+            server.WireMockServer.Given(Request.Create().WithPath("/api/sap")
                 .UsingPost()
                 .WithBody((IBodyData xmlData) => {
                     //xmlData is always null
@@ -58,7 +57,7 @@ namespace Cortside.MockServer.Mocks {
                 }))
                 .RespondWith(Response.Create().WithStatusCode(System.Net.HttpStatusCode.OK));
 
-            server
+            server.WireMockServer
                 .Given(Request.Create()
                     .UsingAnyMethod())
                 .RespondWith(Response.Create()

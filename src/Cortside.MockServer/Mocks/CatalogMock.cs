@@ -4,7 +4,6 @@ using Cortside.MockServer.Mocks.Models;
 using Newtonsoft.Json;
 using WireMock.RequestBuilders;
 using WireMock.ResponseBuilders;
-using WireMock.Server;
 
 namespace Cortside.MockServer.Mocks {
     public class CatalogMock : IMockHttpMock {
@@ -18,8 +17,8 @@ namespace Cortside.MockServer.Mocks {
             catalog.AddRange(items);
         }
 
-        public void Configure(WireMockServer server) {
-            server
+        public void Configure(MockHttpServer server) {
+            server.WireMockServer
                 .Given(
                     Request.Create().WithPath("/api/v1/items/*")
                         .UsingGet()

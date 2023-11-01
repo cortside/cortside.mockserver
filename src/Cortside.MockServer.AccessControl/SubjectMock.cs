@@ -4,32 +4,24 @@ using System.IO;
 using System.Linq;
 using Cortside.MockServer.AccessControl.Models;
 using Newtonsoft.Json;
-using Serilog;
 using WireMock.RequestBuilders;
 using WireMock.ResponseBuilders;
-using WireMock.Server;
 
-namespace Cortside.MockServer.AccessControl
-{
-    public class SubjectMock : IMockHttpMock
-    {
+namespace Cortside.MockServer.AccessControl {
+    public class SubjectMock : IMockHttpMock {
         private readonly Subjects subjects;
 
-        public SubjectMock(string filename)
-        {
+        public SubjectMock(string filename) {
             subjects = JsonConvert.DeserializeObject<Subjects>(File.ReadAllText(filename));
         }
 
-        public SubjectMock(Subjects subjects)
-        {
+        public SubjectMock(Subjects subjects) {
             this.subjects = subjects;
         }
 
-        public void Configure(WireMockServer server)
-        {
-            foreach (var subject in subjects.SubjectsList)
-            {
-                Log.Logger.Debug("Setting up client: {ClientId}", subject.ClientId);
+        public void Configure(MockHttpServer server) {
+            foreach (var subject in subjects.SubjectsList) {
+                server.Logger.Debug($"Setting up client: {subject.ClientId}");
                 var claims = new List<SubjectClaim>();
                 claims.AddRange(subject.Claims);
                 claims.Add(new SubjectClaim { Type = "sub", Value = subject.SubjectId });
@@ -37,9 +29,8 @@ namespace Cortside.MockServer.AccessControl
                 var dictClaims = claims.ToDictionary(x => x.Type, x => x.Value);
                 var claimsJson = JsonConvert.SerializeObject(dictClaims);
 
-                foreach (var policy in subject.Policies)
-                {
-                    server
+                foreach (var policy in subject.Policies) {
+                    server.WireMockServer
                         .Given(
                         Request.Create().WithPath($"/runtime/policy/{policy.PolicyName}")
                         .WithBody(b => b?.Contains(subject.SubjectId) == true)
@@ -52,7 +43,7 @@ namespace Cortside.MockServer.AccessControl
                         );
                 }
 
-                server
+                server.WireMockServer
                     .Given(
                         Request.Create().WithPath("/connect/token")
                             .WithBody(b => b?.Contains(subject.ClientId) == true && b?.Contains("client_credentials") == true)
@@ -62,14 +53,13 @@ namespace Cortside.MockServer.AccessControl
                         Response.Create()
                             .WithStatusCode(200)
                             .WithHeader("Content-Type", "application/json")
-                            .WithBody(_ => JsonConvert.SerializeObject(new AuthenticationResponseModel
-                            {
+                            .WithBody(_ => JsonConvert.SerializeObject(new AuthenticationResponseModel {
                                 TokenType = "Bearer",
                                 ExpiresIn = "3600",
                                 AccessToken = subject.ReferenceToken
                             }))
                 );
-                server
+                server.WireMockServer
                     .Given(
                         Request.Create().WithPath("/connect/token")
                             .WithHeader(h => h.ContainsKey("Authorization") && h["Authorization"]?.FirstOrDefault() != null && h["Authorization"].FirstOrDefault().StartsWith("Basic ") && h["Authorization"]?.FirstOrDefault().Replace("Basic ", "").DecodeBase64().Contains(subject.ClientId) == true)
@@ -79,15 +69,14 @@ namespace Cortside.MockServer.AccessControl
                         Response.Create()
                             .WithStatusCode(200)
                             .WithHeader("Content-Type", "application/json")
-                            .WithBody(_ => JsonConvert.SerializeObject(new AuthenticationResponseModel
-                            {
+                            .WithBody(_ => JsonConvert.SerializeObject(new AuthenticationResponseModel {
                                 TokenType = "Bearer",
                                 ExpiresIn = "3600",
                                 AccessToken = subject.ReferenceToken
                             }))
                 );
 
-                server
+                server.WireMockServer
                     .Given(
                         Request.Create().WithPath("/connect/introspect")
                             .WithBody(b => b?.Contains(subject.ReferenceToken) == true)

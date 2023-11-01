@@ -1,5 +1,6 @@
 using System;
-using Serilog;
+using Microsoft.Extensions.Logging;
+using WireMock.Logging;
 
 namespace Cortside.MockServer {
     public class MockHttpServerBuilder : IMockHttpServerBuilder {
@@ -12,6 +13,7 @@ namespace Cortside.MockServer {
             if (logger != null) {
                 Options.Logger = new WireMockLogger(logger);
             }
+            Options.Logger ??= new WireMockConsoleLogger();
         }
 
         public MockHttpServerBuilder(string routePrefix, int? port, ILogger logger) : this(port, logger) {

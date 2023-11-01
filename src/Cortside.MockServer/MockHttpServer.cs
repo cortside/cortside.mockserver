@@ -1,6 +1,7 @@
 using System;
 using System.Net.Http;
-using Serilog;
+using Microsoft.Extensions.Logging;
+using WireMock.Logging;
 using WireMock.Server;
 
 namespace Cortside.MockServer {
@@ -19,12 +20,23 @@ namespace Cortside.MockServer {
         }
 
         public MockHttpServer(MockHttpServerOptions options) {
+            Logger = options.Logger;
+
+            Logger.Info("Waiting for server to start");
             server = WireMockServer.Start(options.WireMockServerSettings);
 
             foreach (var mock in options.Mocks) {
+                var name = mock.GetType().FullName;
+                Logger.Debug($"Starting mock {name}");
                 StartMock(mock);
             }
+
+            Logger.Info($"Server is listening at {Url}");
         }
+
+        public IWireMockLogger Logger { get; }
+
+        public WireMockServer WireMockServer => server;
 
         public string[] Urls => server.Urls;
 
@@ -51,7 +63,7 @@ namespace Cortside.MockServer {
         }
 
         private void StartMock(IMockHttpMock mock) {
-            mock.Configure(server);
+            mock.Configure(this);
         }
 
         /// <summary>
