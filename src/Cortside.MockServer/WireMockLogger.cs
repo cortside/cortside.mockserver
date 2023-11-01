@@ -1,3 +1,5 @@
+#pragma warning disable Serilog004 // MessageTemplate argument formatString is not constant
+
 using System;
 using System.Text.Json;
 using Serilog;

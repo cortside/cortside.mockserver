@@ -9,20 +9,26 @@ using WireMock.RequestBuilders;
 using WireMock.ResponseBuilders;
 using WireMock.Server;
 
-namespace Cortside.MockServer.AccessControl {
-    public class SubjectMock : IMockHttpServerBuilder {
+namespace Cortside.MockServer.AccessControl
+{
+    public class SubjectMock : IMockHttpMock
+    {
         private readonly Subjects subjects;
 
-        public SubjectMock(string filename) {
+        public SubjectMock(string filename)
+        {
             subjects = JsonConvert.DeserializeObject<Subjects>(File.ReadAllText(filename));
         }
 
-        public SubjectMock(Subjects subjects) {
+        public SubjectMock(Subjects subjects)
+        {
             this.subjects = subjects;
         }
 
-        public void Configure(WireMockServer server) {
-            foreach (var subject in subjects.SubjectsList) {
+        public void Configure(WireMockServer server)
+        {
+            foreach (var subject in subjects.SubjectsList)
+            {
                 Log.Logger.Debug("Setting up client: {ClientId}", subject.ClientId);
                 var claims = new List<SubjectClaim>();
                 claims.AddRange(subject.Claims);
@@ -31,7 +37,8 @@ namespace Cortside.MockServer.AccessControl {
                 var dictClaims = claims.ToDictionary(x => x.Type, x => x.Value);
                 var claimsJson = JsonConvert.SerializeObject(dictClaims);
 
-                foreach (var policy in subject.Policies) {
+                foreach (var policy in subject.Policies)
+                {
                     server
                         .Given(
                         Request.Create().WithPath($"/runtime/policy/{policy.PolicyName}")
@@ -55,7 +62,8 @@ namespace Cortside.MockServer.AccessControl {
                         Response.Create()
                             .WithStatusCode(200)
                             .WithHeader("Content-Type", "application/json")
-                            .WithBody(_ => JsonConvert.SerializeObject(new AuthenticationResponseModel {
+                            .WithBody(_ => JsonConvert.SerializeObject(new AuthenticationResponseModel
+                            {
                                 TokenType = "Bearer",
                                 ExpiresIn = "3600",
                                 AccessToken = subject.ReferenceToken
@@ -71,7 +79,8 @@ namespace Cortside.MockServer.AccessControl {
                         Response.Create()
                             .WithStatusCode(200)
                             .WithHeader("Content-Type", "application/json")
-                            .WithBody(_ => JsonConvert.SerializeObject(new AuthenticationResponseModel {
+                            .WithBody(_ => JsonConvert.SerializeObject(new AuthenticationResponseModel
+                            {
                                 TokenType = "Bearer",
                                 ExpiresIn = "3600",
                                 AccessToken = subject.ReferenceToken

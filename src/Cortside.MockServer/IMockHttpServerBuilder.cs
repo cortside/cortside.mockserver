@@ -1,7 +1,11 @@
-using WireMock.Server;
-
-namespace Cortside.MockServer {
+﻿namespace Cortside.MockServer {
     public interface IMockHttpServerBuilder {
-        public void Configure(WireMockServer server);
+        MockHttpServer Build();
+
+        MockHttpServerOptions Options { get; }
+
+        public IMockHttpServerBuilder AddModule<T>() where T : IMockHttpMock, new();
+
+        public IMockHttpServerBuilder AddModule<T>(T instance) where T : IMockHttpMock;
     }
 }

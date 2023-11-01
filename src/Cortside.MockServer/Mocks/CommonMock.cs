@@ -4,8 +4,8 @@ using WireMock.ResponseBuilders;
 using WireMock.Server;
 using WireMock.Util;
 
-namespace Cortside.MockServer {
-    public class CommonMock : IMockHttpServerBuilder {
+namespace Cortside.MockServer.Mocks {
+    public class CommonMock : IMockHttpMock {
         public void Configure(WireMockServer server) {
             server.AddCatchAllMapping();
             server
@@ -63,7 +63,7 @@ namespace Cortside.MockServer {
                     .UsingAnyMethod())
                 .RespondWith(Response.Create()
                     .WithTransformer()
-                    .WithBody("{{Random Type=\"Integer\" Min=100 Max=999999}} {{DateTime.Now}} {{DateTime.Now \"yyyy-MMM\"}} {{String.Format (DateTime.Now) \"MMM-dd\"}}"));
+                    .WithBody("{{Random Type=\"Integer\" Min=100 Max=999999}} {{DateTime.UtcNow}} {{DateTime.UtcNow \"yyyy-MMM\"}} {{String.Format (DateTime.UtcNow) \"MMM-dd\"}}"));
         }
     }
 }
