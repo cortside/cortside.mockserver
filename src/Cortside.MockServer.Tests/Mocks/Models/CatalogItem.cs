@@ -1,6 +1,6 @@
 using System;
 
-namespace Cortside.MockServer.Mocks.Models {
+namespace Cortside.MockServer.Tests.Mocks.Models {
     public class CatalogItem {
         public Guid ItemId { get; set; }
         public string Name { get; set; }

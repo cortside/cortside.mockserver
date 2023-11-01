@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Cortside.MockServer.Mocks;
-using Cortside.MockServer.Mocks.Models;
+using Cortside.MockServer.Tests.Mocks;
+using Cortside.MockServer.Tests.Mocks.Models;
 using FluentAssertions;
 using Xunit;
 

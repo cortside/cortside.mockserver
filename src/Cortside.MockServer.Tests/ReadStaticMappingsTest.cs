@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Cortside.MockServer.Mocks;
 using FluentAssertions;
 using Xunit;
 
@@ -13,6 +14,7 @@ namespace Cortside.MockServer.Tests {
 
         public ReadStaticMappingsTest() {
             server = MockHttpServer.CreateBuilder(Guid.NewGuid().ToString())
+                .AddModule<CommonMock>()
                 .Build();
 
             client = server.CreateClient();
