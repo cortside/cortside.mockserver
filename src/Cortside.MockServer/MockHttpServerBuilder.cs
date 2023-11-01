@@ -20,12 +20,12 @@ namespace Cortside.MockServer {
             Options.RoutePrefix = routePrefix;
         }
 
-        public IMockHttpServerBuilder AddModule<T>() where T : IMockHttpMock, new() {
+        public IMockHttpServerBuilder AddMock<T>() where T : IMockHttpMock, new() {
             Options.Mocks.Add(new T());
             return this;
         }
 
-        public IMockHttpServerBuilder AddModule<T>(T instance) where T : IMockHttpMock {
+        public IMockHttpServerBuilder AddMock<T>(T instance) where T : IMockHttpMock {
             Options.Mocks.Add(instance);
             return this;
         }

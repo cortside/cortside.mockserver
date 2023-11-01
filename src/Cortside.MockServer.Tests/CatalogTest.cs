@@ -25,7 +25,7 @@ namespace Cortside.MockServer.Tests {
             };
             var mock = new CatalogMock(items);
             server = MockHttpServer.CreateBuilder(Guid.NewGuid().ToString())
-                .AddModule(mock)
+                .AddMock(mock)
                 .Build();
 
             client = server.CreateClient();

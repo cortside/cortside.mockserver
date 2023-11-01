@@ -11,8 +11,8 @@ namespace Cortside.MockServer.Tests {
 
         public AccessControlTest() {
             server = MockHttpServer.CreateBuilder(Guid.NewGuid().ToString())
-                .AddModule(new IdentityServerMock("./Data/discovery.json", "./Data/jwks.json"))
-                .AddModule(new SubjectMock("./Data/subjects.json"))
+                .AddMock(new IdentityServerMock("./Data/discovery.json", "./Data/jwks.json"))
+                .AddMock(new SubjectMock("./Data/subjects.json"))
                 .Build();
 
             client = server.CreateClient();

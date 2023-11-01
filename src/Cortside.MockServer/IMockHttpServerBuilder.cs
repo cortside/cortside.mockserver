@@ -4,8 +4,8 @@
 
         MockHttpServerOptions Options { get; }
 
-        public IMockHttpServerBuilder AddModule<T>() where T : IMockHttpMock, new();
+        public IMockHttpServerBuilder AddMock<T>() where T : IMockHttpMock, new();
 
-        public IMockHttpServerBuilder AddModule<T>(T instance) where T : IMockHttpMock;
+        public IMockHttpServerBuilder AddMock<T>(T instance) where T : IMockHttpMock;
     }
 }

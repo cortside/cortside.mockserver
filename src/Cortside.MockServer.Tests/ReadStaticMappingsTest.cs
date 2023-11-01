@@ -14,7 +14,7 @@ namespace Cortside.MockServer.Tests {
 
         public ReadStaticMappingsTest() {
             server = MockHttpServer.CreateBuilder(Guid.NewGuid().ToString())
-                .AddModule<CommonMock>()
+                .AddMock<CommonMock>()
                 .Build();
 
             client = server.CreateClient();
