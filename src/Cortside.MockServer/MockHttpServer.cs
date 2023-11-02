@@ -9,6 +9,11 @@ namespace Cortside.MockServer {
         private readonly WireMockServer server;
         private bool disposed;
 
+        public static IMockHttpServerBuilder CreateBuilder(MockHttpServerOptions options, ILogger logger = null) {
+            var builder = new MockHttpServerBuilder(options, logger);
+            return builder;
+        }
+
         public static IMockHttpServerBuilder CreateBuilder(int? port = null, ILogger logger = null) {
             var builder = new MockHttpServerBuilder(port, logger);
             return builder;

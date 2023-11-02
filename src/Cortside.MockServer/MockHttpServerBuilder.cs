@@ -6,18 +6,18 @@ namespace Cortside.MockServer {
     public class MockHttpServerBuilder : IMockHttpServerBuilder {
         private bool hostBuilt;
 
-        public MockHttpServerBuilder(int? port, ILogger logger) {
-            Options = new MockHttpServerOptions() {
-                Port = port
-            };
+        public MockHttpServerBuilder(MockHttpServerOptions options, ILogger logger = null) {
+            Options = options;
             if (logger != null) {
                 Options.Logger = new WireMockLogger(logger);
             }
             Options.Logger ??= new WireMockConsoleLogger();
         }
 
-        public MockHttpServerBuilder(string routePrefix, int? port, ILogger logger) : this(port, logger) {
-            Options.RoutePrefix = routePrefix;
+        public MockHttpServerBuilder(int? port, ILogger logger) : this(new MockHttpServerOptions() { Port = port }, logger) {
+        }
+
+        public MockHttpServerBuilder(string routePrefix, int? port, ILogger logger) : this(new MockHttpServerOptions() { Port = port, RoutePrefix = routePrefix }, logger) {
         }
 
         public IMockHttpServerBuilder AddMock<T>() where T : IMockHttpMock, new() {

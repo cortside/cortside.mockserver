@@ -27,7 +27,6 @@ namespace Cortside.MockServer.Tests {
             client.BaseAddress.Should().Be(server.Url);
         }
 
-
         [Fact]
         public async Task ShouldMatchStaticMapping() {
             //arrange
