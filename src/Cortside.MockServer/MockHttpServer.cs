@@ -1,5 +1,6 @@
 using System;
 using System.Net.Http;
+using Cortside.MockServer.Builder;
 using Microsoft.Extensions.Logging;
 using WireMock.Logging;
 using WireMock.Server;

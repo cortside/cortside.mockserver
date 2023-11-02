@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using WireMock.Admin.Requests;
 using WireMock.Logging;
 
-namespace Cortside.MockServer {
+namespace Cortside.MockServer.Logging {
     public class WireMockLogger : IWireMockLogger {
         private readonly JsonSerializerOptions options = new JsonSerializerOptions {
             WriteIndented = true

@@ -1,8 +1,9 @@
 using System;
+using Cortside.MockServer.Logging;
 using Microsoft.Extensions.Logging;
 using WireMock.Logging;
 
-namespace Cortside.MockServer {
+namespace Cortside.MockServer.Builder {
     public class MockHttpServerBuilder : IMockHttpServerBuilder {
         private bool hostBuilt;
 

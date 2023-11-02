@@ -1,5 +1,6 @@
 using System.IO;
 using Cortside.MockServer.AccessControl.Models;
+using Cortside.MockServer.Builder;
 using Newtonsoft.Json;
 using WireMock.RequestBuilders;
 using WireMock.ResponseBuilders;

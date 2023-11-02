@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Cortside.AspNetCore.Common.Paging;
+using Cortside.MockServer.Builder;
 using Cortside.MockServer.Tests.Mocks.Models;
 using Newtonsoft.Json;
 using WireMock.RequestBuilders;
