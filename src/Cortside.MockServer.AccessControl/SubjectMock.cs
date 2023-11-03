@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Cortside.MockServer.AccessControl.Models;
+using Cortside.MockServer.Builder;
 using Newtonsoft.Json;
-using Serilog;
 using WireMock.RequestBuilders;
 using WireMock.ResponseBuilders;
-using WireMock.Server;
 
 namespace Cortside.MockServer.AccessControl {
-    public class SubjectMock : IMockHttpServerBuilder {
+    public class SubjectMock : IMockHttpMock {
         private readonly Subjects subjects;
 
         public SubjectMock(string filename) {
@@ -21,9 +20,9 @@ namespace Cortside.MockServer.AccessControl {
             this.subjects = subjects;
         }
 
-        public void Configure(WireMockServer server) {
+        public void Configure(MockHttpServer server) {
             foreach (var subject in subjects.SubjectsList) {
-                Log.Logger.Debug("Setting up client: {ClientId}", subject.ClientId);
+                server.Logger.Debug($"Setting up client: {subject.ClientId}");
                 var claims = new List<SubjectClaim>();
                 claims.AddRange(subject.Claims);
                 claims.Add(new SubjectClaim { Type = "sub", Value = subject.SubjectId });
@@ -32,7 +31,7 @@ namespace Cortside.MockServer.AccessControl {
                 var claimsJson = JsonConvert.SerializeObject(dictClaims);
 
                 foreach (var policy in subject.Policies) {
-                    server
+                    server.WireMockServer
                         .Given(
                         Request.Create().WithPath($"/runtime/policy/{policy.PolicyName}")
                         .WithBody(b => b?.Contains(subject.SubjectId) == true)
@@ -45,7 +44,7 @@ namespace Cortside.MockServer.AccessControl {
                         );
                 }
 
-                server
+                server.WireMockServer
                     .Given(
                         Request.Create().WithPath("/connect/token")
                             .WithBody(b => b?.Contains(subject.ClientId) == true && b?.Contains("client_credentials") == true)
@@ -61,7 +60,7 @@ namespace Cortside.MockServer.AccessControl {
                                 AccessToken = subject.ReferenceToken
                             }))
                 );
-                server
+                server.WireMockServer
                     .Given(
                         Request.Create().WithPath("/connect/token")
                             .WithHeader(h => h.ContainsKey("Authorization") && h["Authorization"]?.FirstOrDefault() != null && h["Authorization"].FirstOrDefault().StartsWith("Basic ") && h["Authorization"]?.FirstOrDefault().Replace("Basic ", "").DecodeBase64().Contains(subject.ClientId) == true)
@@ -78,7 +77,7 @@ namespace Cortside.MockServer.AccessControl {
                             }))
                 );
 
-                server
+                server.WireMockServer
                     .Given(
                         Request.Create().WithPath("/connect/introspect")
                             .WithBody(b => b?.Contains(subject.ReferenceToken) == true)

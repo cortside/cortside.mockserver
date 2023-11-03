@@ -1,14 +1,14 @@
 using System;
+using Cortside.MockServer.Builder;
 using WireMock.RequestBuilders;
 using WireMock.ResponseBuilders;
-using WireMock.Server;
 using WireMock.Util;
 
-namespace Cortside.MockServer {
-    public class CommonMock : IMockHttpServerBuilder {
-        public void Configure(WireMockServer server) {
-            server.AddCatchAllMapping();
-            server
+namespace Cortside.MockServer.Mocks {
+    public class CommonMock : IMockHttpMock {
+        public void Configure(MockHttpServer server) {
+            server.WireMockServer.AddCatchAllMapping();
+            server.WireMockServer
                 .Given(
                     Request.Create().WithPath("/".Split('?')[0]).UsingGet()
                     )
@@ -17,7 +17,7 @@ namespace Cortside.MockServer {
                         .WithStatusCode(200)
                     );
 
-            server
+            server.WireMockServer
                 .Given(
                     Request.Create().WithPath("/").UsingGet()
                 )
@@ -26,7 +26,7 @@ namespace Cortside.MockServer {
                         .WithStatusCode(200)
                 );
 
-            server
+            server.WireMockServer
                 .Given(
                     Request.Create().WithPath("/api/health").UsingGet()
                 )
@@ -38,7 +38,7 @@ namespace Cortside.MockServer {
                         .WithStatusCode(200)
                 );
 
-            server
+            server.WireMockServer
                 .Given(
                     Request.Create().WithPath("/health").UsingGet()
                 )
@@ -50,7 +50,7 @@ namespace Cortside.MockServer {
                         .WithStatusCode(200)
                 );
 
-            server.Given(Request.Create().WithPath("/api/sap")
+            server.WireMockServer.Given(Request.Create().WithPath("/api/sap")
                 .UsingPost()
                 .WithBody((IBodyData xmlData) => {
                     //xmlData is always null
@@ -58,12 +58,12 @@ namespace Cortside.MockServer {
                 }))
                 .RespondWith(Response.Create().WithStatusCode(System.Net.HttpStatusCode.OK));
 
-            server
+            server.WireMockServer
                 .Given(Request.Create()
                     .UsingAnyMethod())
                 .RespondWith(Response.Create()
                     .WithTransformer()
-                    .WithBody("{{Random Type=\"Integer\" Min=100 Max=999999}} {{DateTime.Now}} {{DateTime.Now \"yyyy-MMM\"}} {{String.Format (DateTime.Now) \"MMM-dd\"}}"));
+                    .WithBody("{{Random Type=\"Integer\" Min=100 Max=999999}} {{DateTime.UtcNow}} {{DateTime.UtcNow \"yyyy-MMM\"}} {{String.Format (DateTime.UtcNow) \"MMM-dd\"}}"));
         }
     }
 }

@@ -1,12 +1,12 @@
 using System.IO;
 using Cortside.MockServer.AccessControl.Models;
+using Cortside.MockServer.Builder;
 using Newtonsoft.Json;
 using WireMock.RequestBuilders;
 using WireMock.ResponseBuilders;
-using WireMock.Server;
 
 namespace Cortside.MockServer.AccessControl {
-    public class IdentityServerMock : IMockHttpServerBuilder {
+    public class IdentityServerMock : IMockHttpMock {
         private readonly IdsDiscovery idsConfiguration;
         private readonly IdsJwks idsJwks;
 
@@ -15,7 +15,7 @@ namespace Cortside.MockServer.AccessControl {
             idsJwks = JsonConvert.DeserializeObject<IdsJwks>(File.ReadAllText(jwksFilename));
         }
 
-        public void Configure(WireMockServer server) {
+        public void Configure(MockHttpServer server) {
             idsConfiguration.Authorization_endpoint = idsConfiguration.Authorization_endpoint.Replace("https://identityserver.cortside.com", server.Urls[0]);
             idsConfiguration.Issuer = idsConfiguration.Issuer.Replace("https://identityserver.cortside.com", server.Urls[0]);
             idsConfiguration.Jwks_uri = idsConfiguration.Jwks_uri.Replace("https://identityserver.cortside.com", server.Urls[0]);
@@ -27,7 +27,7 @@ namespace Cortside.MockServer.AccessControl {
             idsConfiguration.Introspection_endpoint = idsConfiguration.Introspection_endpoint.Replace("https://identityserver.cortside.com", server.Urls[0]);
             idsConfiguration.Device_authorization_endpoint = idsConfiguration.Device_authorization_endpoint.Replace("https://identityserver.cortside.com", server.Urls[0]);
 
-            server
+            server.WireMockServer
                 .Given(
                     Request.Create().WithPath("/.well-known/openid-configuration")
                     .UsingGet()
@@ -39,7 +39,7 @@ namespace Cortside.MockServer.AccessControl {
                         .WithBody(_ => JsonConvert.SerializeObject(idsConfiguration))
                     );
 
-            server
+            server.WireMockServer
                 .Given(
                     Request.Create().WithPath("/.well-known/openid-configuration/jwks")
                         .UsingGet()
@@ -51,7 +51,7 @@ namespace Cortside.MockServer.AccessControl {
                         .WithBody(_ => JsonConvert.SerializeObject(idsJwks))
                 );
 
-            server
+            server.WireMockServer
                 .Given(
                     Request.Create().WithPath("/connect/token")
                         .UsingPost()
