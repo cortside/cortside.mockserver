@@ -1,3 +1,77 @@
+# Release 6.1
+
+* Update nuget dependencies to latest stable versions
+* Introduced new MockHttpServerBuilder to make setting up the server a little easier and more fluent
+	```csharp
+	server = MockHttpServer.CreateBuilder(Guid.NewGuid().ToString())
+		.AddMock(new IdentityServerMock("./Data/discovery.json", "./Data/jwks.json"))
+		.AddMock(new SubjectMock("./Data/subjects.json"))
+		.Build();
+	```
+* Added MockHttpServer method CreateClient that returns a preconfigured HttpClient instance
+	```csharp
+	client = server.CreateClient();
+	```
+* Add an extension method to simplify creating a stand alone server
+	```csharp
+	public static class Program {
+		public static Task Main(string[] args) {
+			// setup global default json serializer settings
+			JsonConvert.DefaultSettings = JsonNetUtility.GlobalDefaultSettings;
+
+			var configuration = new ConfigurationBuilder()
+				.SetBasePath(Directory.GetCurrentDirectory())
+				.AddJsonFile("appsettings.json", false, false)
+				.AddJsonFile("appsettings.local.json", true, false)
+				.AddJsonFile("build.json", false, false)
+				.Build();
+
+			var options = configuration.GetSection("MockHttpServerOptions").Get<MockHttpServerOptions>();
+			var build = configuration.GetSection("Build").Get<BuildModel>();
+			var connectionString = configuration["Database:ConnectionString"];
+
+			var server = MockHttpServer.CreateBuilder(options)
+				.AddMock<CommonMock>()
+				.AddMock(new IdentityServerMock("./Data/discovery.json", "./Data/jwks.json"))
+				.AddMock(new SubjectMock("./Data/subjects.json"))
+				.AddMock(new CatalogMock("./Data/items.json"))
+				.Build();
+
+			return server.WaitForCancelKeyPressAsync();
+		}
+	}
+	```
+
+	with following section in appsettings.json:
+	```json
+	"MockHttpServerOptions": {
+		"Port": 5001,
+		"CorsPolicyOptions": "AllowAll",
+		"StartAdminInterface": false,
+		"AllowCSharpCodeMatcher": false,
+		"ReadStaticMappings": false
+	}
+	```
+* Change interface needed for mock classes from IMockHttpServerBuilder to IMockHttpMock
+* Removed use of Serilog in favor of solely relying on Microsoft.Extensions.Logging
+	
+	
+|Commit|Date|Author|Message|
+|---|---|---|---|
+| a974867 | <span style="white-space:nowrap;">2023-08-29</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  update version
+| b1c11ca | <span style="white-space:nowrap;">2023-09-04</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  Merge branch 'master' into develop
+| a033176 | <span style="white-space:nowrap;">2023-10-31</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  [ISSUE-9] add MockHttpServerBuilder and cleanup configuration; add test project with some initial tests
+| 0532ee2 | <span style="white-space:nowrap;">2023-11-01</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  [ISSUE-9] add logging and ability to get to Logger and WireMock server
+| cda9c06 | <span style="white-space:nowrap;">2023-11-01</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  [ISSUE-9] cleanup and moving catalog mock back to tests
+| 2f51bd3 | <span style="white-space:nowrap;">2023-11-01</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  [ISSUE-9] rename AddModule to AddMock
+| 23a0954 | <span style="white-space:nowrap;">2023-11-01</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  [ISSUE-9] add ability to use options object in builder
+| 0495917 | <span style="white-space:nowrap;">2023-11-01</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  [ISSUE-9] better organize namespace
+| d9e8858 | <span style="white-space:nowrap;">2023-11-03</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  update to jdk17 for sonar
+| 5573c29 | <span style="white-space:nowrap;">2023-11-03</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  (origin/ISSUE-9, ISSUE-9) update to jdk17+ for sonar
+| 0fb9c96 | <span style="white-space:nowrap;">2023-11-03</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  Merge pull request #10 from cortside/ISSUE-9
+| 671992d | <span style="white-space:nowrap;">2023-11-08</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  (HEAD -> release/6.1, origin/develop, develop) update to latest nuget packages
+****
+
 # Release 6.0
 
 * Update version number to match framework version (6.x)

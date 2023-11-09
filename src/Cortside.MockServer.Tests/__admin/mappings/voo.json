@@ -1,0 +1,55 @@
+{
+    "Guid": "328bf50e-0f45-48db-8699-697b24d01ddb",
+    "Title": "",
+    "Priority": 0,
+    "Request": {
+        "Path": {
+            "Matchers": [
+                {
+                    "Name": "WildcardMatcher",
+                    "Pattern": "/WsIdentity/VerificationOfOccupancy",
+                    "IgnoreCase": false
+                }
+            ]
+        },
+        "Methods": [
+            "post"
+        ],
+        "Params": [
+            {
+                "Name": "ver_",
+                "Values": [
+                    "1.87"
+                ]
+            }
+        ],
+        "Body": {
+            "Matcher": {
+                "Name": "ExactMatcher",
+                "Pattern": "User.ReferenceCode=appId&User.GLBPurpose=1&User.DLPurpose=3&User.MaxWaitSeconds=30&User.MaxWaitSecondsSpecified=1&Options.AttributesVersionRequest=VOOATTRV1&Options.IncludeModel=1&Options.IncludeModelSpecified=1&Options.IncludeReportSpecified=0&SearchBy.Name.First=Chayanne&SearchBy.Name.Last=Sullivan&SearchBy.Address.StreetAddress1=31%20HENRY%20WAY%20ST&SearchBy.Address.City=Hawkinsville&SearchBy.Address.State=GA&SearchBy.Address.Zip5=31036&SearchBy.SSN=566637173"
+            }
+        }
+    },
+    "Response": {
+        "StatusCode": 200,
+        "Body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><VerificationOfOccupancyResponseEx><response><Header><Status>0</Status></Header><Result><InputEcho><Name><First>Chayanne</First><Last>Sullivan</Last></Name><Address><StreetAddress1>31 HENRY WAY ST</StreetAddress1><City>Hawkinsville</City><State>GA</State><Zip5>31036</Zip5></Address><SSN>566637173</SSN></InputEcho><UniqueId>0</UniqueId><AttributeGroup><Name>VOOATTRV1</Name><Attributes><Attribute><Name>AddressReportingSourceIndex</Name></Attribute><Attribute><Name>AddressReportingHistoryIndex</Name></Attribute><Attribute><Name>AddressSearchHistoryIndex</Name></Attribute><Attribute><Name>AddressUtilityHistoryIndex</Name></Attribute><Attribute><Name>AddressOwnershipHistoryIndex</Name></Attribute><Attribute><Name>AddressPropertyTypeIndex</Name></Attribute><Attribute><Name>AddressValidityIndex</Name></Attribute><Attribute><Name>RelativesConfirmingAddressIndex</Name></Attribute><Attribute><Name>AddressOwnerMailingAddressIndex</Name></Attribute><Attribute><Name>PriorAddressMoveIndex</Name></Attribute><Attribute><Name>PriorResidentMoveIndex</Name></Attribute><Attribute><Name>AddressDateFirstSeen</Name></Attribute><Attribute><Name>AddressDateLastSeen</Name></Attribute><Attribute><Name>OccupancyOverride</Name></Attribute><Attribute><Name>InferredOwnershipTypeIndex</Name></Attribute><Attribute><Name>OtherOwnedPropertyProximity</Name></Attribute><Attribute><Name>VerificationOfOccupancyScore</Name></Attribute></Attributes></AttributeGroup></Result></response></VerificationOfOccupancyResponseEx>",
+        "BodyEncoding": {
+            "CodePage": 65001,
+            "EncodingName": "Unicode (UTF-8)",
+            "WebName": "utf-8"
+        },
+        "UseTransformer": false,
+        "Headers": {
+            "Vary": [
+                "Accept-Encoding",
+                "User-Agent"
+            ],
+            "Expires": "0",
+            "Date": "Fri, 23 Mar 2018 22:34:15 GMT",
+            "Server": "Apache",
+            "Keep-Alive": "timeout=15, max=99",
+            "Connection": "Keep-Alive",
+            "Content-Type": "text/xml; charset=UTF-8"
+        }
+    }
+}
