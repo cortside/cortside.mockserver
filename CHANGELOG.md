@@ -8,6 +8,17 @@
 		.AddMock(new SubjectMock("./Data/subjects.json"))
 		.Build();
 	```
+	
+	This replaces the previous method like this:
+	```csharp
+	// OLD style that has been replaced
+	server = new MockHttpServer(name)
+		.ConfigureBuilder(new SubjectMock("./Data/subjects.json"))
+		.ConfigureBuilder<TestMock>()
+		.ConfigureBuilder<DelegationGrantMock>();
+
+	server.WaitForStart();	
+	```
 * Added MockHttpServer method CreateClient that returns a preconfigured HttpClient instance
 	```csharp
 	client = server.CreateClient();

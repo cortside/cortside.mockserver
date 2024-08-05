@@ -29,7 +29,7 @@ namespace Cortside.MockServer.Tests {
         }
 
         [Fact]
-        public async Task ShouldMatchStaticMapping() {
+        public async Task ShouldMatchStaticMappingAsync() {
             //arrange
             var uri = new Uri(client.BaseAddress + "WsIdentity/VerificationOfOccupancy");
             var body = "User.ReferenceCode=appId&User.GLBPurpose=1&User.DLPurpose=3&User.MaxWaitSeconds=30&User.MaxWaitSecondsSpecified=1&Options.AttributesVersionRequest=VOOATTRV1&Options.IncludeModel=1&Options.IncludeModelSpecified=1&Options.IncludeReportSpecified=0&SearchBy.Name.First=Chayanne&SearchBy.Name.Last=Sullivan&SearchBy.Address.StreetAddress1=31%20HENRY%20WAY%20ST&SearchBy.Address.City=Hawkinsville&SearchBy.Address.State=GA&SearchBy.Address.Zip5=31036&SearchBy.SSN=566637173";
