@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using WireMock.Logging;
 using WireMock.Settings;
 using WireMock.Types;
