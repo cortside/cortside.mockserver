@@ -1,3 +1,16 @@
+# Release 6.2
+
+|Commit|Date|Author|Message|
+|---|---|---|---|
+| d73f2df | <span style="white-space:nowrap;">2023-11-08</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  update version
+| 8c6cfd5 | <span style="white-space:nowrap;">2023-11-08</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  Merge branch 'master' into develop
+| e1f880e | <span style="white-space:nowrap;">2024-08-05</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  update to latest nuget packages; update scripts
+| 5f99b62 | <span style="white-space:nowrap;">2024-08-27</span> | <span style="white-space:nowrap;">troychorton</span> |  [add-child-policies-to-subject-mock] added child policies to subject mock
+| ef274ce | <span style="white-space:nowrap;">2024-08-27</span> | <span style="white-space:nowrap;">troychorton</span> |  [add-child-policies-to-subject-mock] update nuget apikey
+| 06cc84f | <span style="white-space:nowrap;">2024-08-29</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  Merge pull request #12 from cortside/feature/add-child-policies-to-subject-mock
+| 8080be8 | <span style="white-space:nowrap;">2024-09-02</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  (HEAD -> release/6.2, origin/develop, develop) update scripts; update nuget packages;
+****
+
 # Release 6.1
 
 * Update nuget dependencies to latest stable versions
