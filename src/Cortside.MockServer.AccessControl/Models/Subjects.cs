@@ -21,11 +21,18 @@ namespace Cortside.MockServer.AccessControl.Models {
     public class Authorization {
         public List<string> Roles { get; set; }
         public List<string> Permissions { get; set; }
+        public List<ChildPolicyResult> ChildPolicies { get; set; }
     }
 
     public class Policy {
         public string PolicyName { get; set; }
         public Authorization Authorization { get; set; }
+    }
+
+    public class ChildPolicyResult {
+        public string Name { get; set; }
+        public IEnumerable<string> Roles { get; set; }
+        public IEnumerable<string> Permissions { get; set; }
     }
 
     public class Subjects {
