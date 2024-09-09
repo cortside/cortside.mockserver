@@ -1,4 +1,4 @@
-﻿namespace Cortside.MockServer.Builder {
+namespace Cortside.MockServer.Builder {
     public interface IMockHttpServerBuilder {
         MockHttpServer Build();
 

@@ -1,5 +1,9 @@
 # Release 6.2
 
+* Update nuget dependencies to latest stable versions
+* Add support for child policies in SubjectMock
+
+
 |Commit|Date|Author|Message|
 |---|---|---|---|
 | d73f2df | <span style="white-space:nowrap;">2023-11-08</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  update version
