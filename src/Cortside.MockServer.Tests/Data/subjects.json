@@ -10,7 +10,7 @@
         }
       ],
       "userType": "service",
-      "referenceToken": "107d225e3ea706bbbceb83593daf5c73c1347a89eaa89f253ca845beffb2e3f9",
+      "referenceToken": "fakeToken-foo",
       "policies": [
         {
           "policyName": "SqlReport*",
@@ -54,7 +54,7 @@
         }
       ],
       "userType": "service",
-      "referenceToken": "107d225e3ea706bbbceb83593daf5c73c1347a89eaa89f253ca845beffb2e3f9",
+      "referenceToken": "fakeToken-api",
       "policies": [
         {
           "policyName": "ShoppingCart*",
@@ -86,7 +86,7 @@
         }
       ],
       "userType": "service",
-      "referenceToken": "fakeTokenauthorizationapi",
+      "referenceToken": "fakeToken-authorizationapi",
       "policies": [
         {
           "policyResourceId": "bfa68daf-cd0d-4b76-b43b-a2bb9183ca17",
