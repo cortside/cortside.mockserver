@@ -1,6 +1,7 @@
 using System;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 using Cortside.MockServer.AccessControl;
@@ -47,6 +48,25 @@ namespace Cortside.MockServer.Tests {
             response.StatusCode.Should().Be(HttpStatusCode.OK);
             var content = await response.Content.ReadAsStringAsync();
             content.Should().Contain(permission);
+        }
+
+        [Fact]
+        public async Task ShouldSupportAuthorizationApiAsync() {
+            //arrange
+            const string subjectId = "222953b2-f6a7-4c1d-8da1-2b3c3da55555";
+            var policyId = "bfa68daf-cd0d-4b76-b43b-a2bb9183ca17";
+            var url = $"api/v1/policies/{policyId}/evaluate";
+
+            var uri = new Uri(client.BaseAddress + url);
+            var body = subjectId;
+
+            //act
+            var response = await client.PostAsJsonAsync(uri, body);
+
+            //assert
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().Contain("AdjustOrder");
         }
     }
 }

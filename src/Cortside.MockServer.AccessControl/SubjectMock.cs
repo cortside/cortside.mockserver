@@ -31,6 +31,7 @@ namespace Cortside.MockServer.AccessControl {
                 var claimsJson = JsonConvert.SerializeObject(dictClaims);
 
                 foreach (var policy in subject.Policies) {
+                    // policyserver
                     server.WireMockServer
                         .Given(
                         Request.Create().WithPath($"/runtime/policy/{policy.PolicyName}")
@@ -42,6 +43,21 @@ namespace Cortside.MockServer.AccessControl {
                                 .WithStatusCode(200)
                                 .WithBody(_ => JsonConvert.SerializeObject(policy.Authorization))
                         );
+
+                    // authorization-api
+                    if (policy.PolicyResourceId.HasValue) {
+                        server.WireMockServer
+                            .Given(
+                            Request.Create().WithPath($"/api/v1/policies/{policy.PolicyResourceId}/evaluate")
+                            .WithBody(b => b?.Contains(subject.SubjectId) == true)
+                                .UsingPost()
+                            )
+                            .RespondWith(
+                                Response.Create()
+                                    .WithStatusCode(200)
+                                    .WithBody(_ => JsonConvert.SerializeObject(policy.Authorization))
+                            );
+                    }
                 }
 
                 server.WireMockServer
