@@ -86,7 +86,7 @@
         }
       ],
       "userType": "service",
-      "referenceToken": "107d225e3ea706bbbceb83593daf5c73c1347a89eaa89f253ca845beffb55555",
+      "referenceToken": "fakeTokenauthorizationapi",
       "policies": [
         {
           "policyResourceId": "bfa68daf-cd0d-4b76-b43b-a2bb9183ca17",
