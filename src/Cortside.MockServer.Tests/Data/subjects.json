@@ -1,80 +1,105 @@
 {
-    "subjects": [
+  "subjects": [
+    {
+      "clientId": "foo",
+      "subjectId": "132953b2-f6a7-4c1d-8da1-2b3c3dafe1c5",
+      "claims": [
         {
-            "clientId": "foo",
-            "subjectId": "132953b2-f6a7-4c1d-8da1-2b3c3dafe1c5",
-            "claims": [
-                {
-                    "type": "active",
-                    "value": "true"
-                }
+          "type": "active",
+          "value": "true"
+        }
+      ],
+      "userType": "service",
+      "referenceToken": "fakeToken-foo",
+      "policies": [
+        {
+          "policyName": "SqlReport*",
+          "authorization": {
+            "roles": [
+              "Support"
             ],
-            "userType": "service",
-            "referenceToken": "107d225e3ea706bbbceb83593daf5c73c1347a89eaa89f253ca845beffb2e3f9",
-            "policies": [
-                {
-                    "policyName": "SqlReport*",
-                    "authorization": {
-                        "roles": [
-                            "Support"
-                        ],
-                        "permissions": [
-                            "CanGetReports",
-                            "spReport_Report1"
-                        ]
-                    }
-                },
-                {
-                    "policyName": "ShoppingCart*",
-                    "authorization": {
-                        "roles": [
-                            "Internal"
-                        ],
-                        "permissions": [
-                            "GetOrders",
-                            "GetOrder",
-                            "CreateOrder",
-                            "UpdateOrder",
-                            "GetCustomers",
-                            "GetCustomer",
-                            "CreateCustomer",
-                            "UpdateCustomer"
-                        ]
-                    }
-                }
+            "permissions": [
+              "CanGetReports",
+              "spReport_Report1"
             ]
+          }
         },
         {
-            "clientId": "api",
-            "subjectId": "132953b2-f6a7-4c1d-8da1-2b3c3dafe1c5",
-            "claims": [
-                {
-                    "type": "active",
-                    "value": "true"
-                }
+          "policyName": "ShoppingCart*",
+          "authorization": {
+            "roles": [
+              "Internal"
             ],
-            "userType": "service",
-            "referenceToken": "107d225e3ea706bbbceb83593daf5c73c1347a89eaa89f253ca845beffb2e3f9",
-            "policies": [
-                {
-                    "policyName": "ShoppingCart*",
-                    "authorization": {
-                        "roles": [
-                            "Internal"
-                        ],
-                        "permissions": [
-                            "GetOrders",
-                            "GetOrder",
-                            "CreateOrder",
-                            "UpdateOrder",
-                            "GetCustomers",
-                            "GetCustomer",
-                            "CreateCustomer",
-                            "UpdateCustomer"
-                        ]
-                    }
-                }
+            "permissions": [
+              "GetOrders",
+              "GetOrder",
+              "CreateOrder",
+              "UpdateOrder",
+              "GetCustomers",
+              "GetCustomer",
+              "CreateCustomer",
+              "UpdateCustomer"
             ]
+          }
         }
-    ]
+      ]
+    },
+    {
+      "clientId": "api",
+      "subjectId": "132953b2-f6a7-4c1d-8da1-2b3c3dafe1c5",
+      "claims": [
+        {
+          "type": "active",
+          "value": "true"
+        }
+      ],
+      "userType": "service",
+      "referenceToken": "fakeToken-api",
+      "policies": [
+        {
+          "policyName": "ShoppingCart*",
+          "authorization": {
+            "roles": [
+              "Internal"
+            ],
+            "permissions": [
+              "GetOrders",
+              "GetOrder",
+              "CreateOrder",
+              "UpdateOrder",
+              "GetCustomers",
+              "GetCustomer",
+              "CreateCustomer",
+              "UpdateCustomer"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "clientId": "authorizationapi-client",
+      "subjectId": "222953b2-f6a7-4c1d-8da1-2b3c3da55555",
+      "claims": [
+        {
+          "type": "active",
+          "value": "true"
+        }
+      ],
+      "userType": "service",
+      "referenceToken": "fakeToken-authorizationapi",
+      "policies": [
+        {
+          "policyResourceId": "bfa68daf-cd0d-4b76-b43b-a2bb9183ca17",
+          "authorization": {
+            "roles": [
+              "Management"
+            ],
+            "permissions": [
+              "AdjustOrder"
+            ]
+          }
+        }
+      ]
+    }
+  ]
 }
