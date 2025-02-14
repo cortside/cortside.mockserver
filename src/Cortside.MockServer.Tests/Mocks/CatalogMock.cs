@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Cortside.AspNetCore.Common.Paging;
 using Cortside.MockServer.Builder;
 using Cortside.MockServer.Tests.Mocks.Models;
@@ -62,7 +63,7 @@ namespace Cortside.MockServer.Tests.Mocks {
                 id = Guid.NewGuid();
             }
 
-            var item = catalog.Items.Find(x => x.ItemId == id);
+            var item = catalog.Items.First(x => x.ItemId == id);
             if (item != null) {
                 return item;
             }
