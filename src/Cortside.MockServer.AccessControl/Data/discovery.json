@@ -13,7 +13,7 @@
   "frontchannel_logout_session_supported": true,
   "backchannel_logout_supported": true,
   "backchannel_logout_session_supported": true,
-  "scopes_supported": [ "openid", "profile", "role", "eboa.webapi", "multidisbursement.api", "fundingmanagement.api", "identity", "common.communications", "multidisbursement.backendapp", "loan-api", "document-api", "partnerportal", "user-api", "termscalculator-api", "datawarehouse-api", "policyserver.runtime", "policyserver.management", "policyserver.externalsearch", "calendar.api", "maintenance.api", "appreview-api", "idsadmin-ui", "offline_access" ],
+  "scopes_supported": [ "openid", "profile", "role", "shoppingcart-api", "shoppingcart-web", "offline_access" ],
   "claims_supported": [ "sub", "name", "family_name", "given_name", "middle_name", "nickname", "preferred_username", "profile", "picture", "website", "gender", "birthdate", "zoneinfo", "locale", "updated_at", "role", "groups" ],
   "grant_types_supported": [ "authorization_code", "client_credentials", "refresh_token", "implicit", "urn:ietf:params:oauth:grant-type:device_code" ],
   "response_types_supported": [ "code", "token", "id_token", "id_token token", "code id_token", "code token", "code id_token token" ],
