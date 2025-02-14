@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -27,6 +28,7 @@ namespace Cortside.MockServer.AccessControl.Models {
     public class Policy {
         public string PolicyName { get; set; }
         public Authorization Authorization { get; set; }
+        public Guid? PolicyResourceId { get; set; }
     }
 
     public class ChildPolicyResult {
