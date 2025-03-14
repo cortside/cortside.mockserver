@@ -1,3 +1,20 @@
+# Release 8.0
+
+|Commit|Date|Author|Message|
+|---|---|---|---|
+| 8c7d39a | <span style="white-space:nowrap;">2024-09-02</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  update version
+| 0979862 | <span style="white-space:nowrap;">2024-09-09</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  Merge branch 'master' into develop
+| 35c29bb | <span style="white-space:nowrap;">2024-12-30</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  add badges to README.md
+| 6deaabc | <span style="white-space:nowrap;">2025-01-22</span> | <span style="white-space:nowrap;">=</span> |  authorization-api
+| 49c3117 | <span style="white-space:nowrap;">2025-01-22</span> | <span style="white-space:nowrap;">=</span> |  more clearly fake token
+| 0fa7f1a | <span style="white-space:nowrap;">2025-01-22</span> | <span style="white-space:nowrap;">=</span> |  (origin/feature/ENG-4482-authorization) fake tokens & coverlet change
+| 4bb21bd | <span style="white-space:nowrap;">2025-01-30</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  Merge pull request #14 from cortside/feature/ENG-4482-authorization
+| eed5229 | <span style="white-space:nowrap;">2025-02-14</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  cleanup
+| ac270b7 | <span style="white-space:nowrap;">2025-02-14</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  Merge branch 'develop' of github.com:cortside/cortside.mockserver into develop
+| 559934e | <span style="white-space:nowrap;">2025-02-14</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  update to net8
+| d17d1f5 | <span style="white-space:nowrap;">2025-03-13</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  (HEAD -> release/8.0, origin/develop, develop) Use Shouldly instead of FluentAssertions because of new licensing; update nuget packages;
+****
+
 # Release 6.2
 
 * Update nuget dependencies to latest stable versions
