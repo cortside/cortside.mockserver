@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Cortside.MockServer.Tests.Mocks;
 using Cortside.MockServer.Tests.Mocks.Models;
-using FluentAssertions;
+using Shouldly;
 using Xunit;
 
 namespace Cortside.MockServer.Tests {
@@ -34,8 +34,8 @@ namespace Cortside.MockServer.Tests {
         [Fact]
         public void ShouldBeStarted() {
             //assert
-            server.IsStarted.Should().BeTrue();
-            client.BaseAddress.Should().Be(server.Url);
+            server.IsStarted.ShouldBeTrue();
+            client.BaseAddress.ShouldBe(new Uri(server.Url));
         }
 
         [Fact]
@@ -48,10 +48,10 @@ namespace Cortside.MockServer.Tests {
             var response = await client.GetAsync(url);
 
             //assert
-            response.StatusCode.Should().Be(HttpStatusCode.OK);
+            response.StatusCode.ShouldBe(HttpStatusCode.OK);
             var content = await response.Content.ReadAsStringAsync();
-            content.Should().Contain(itemId);
-            content.Should().Contain("PAPPY-25");
+            content.ShouldContain(itemId);
+            content.ShouldContain("PAPPY-25");
         }
     }
 }
