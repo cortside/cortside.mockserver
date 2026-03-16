@@ -1,3 +1,12 @@
+# Release 8.1
+
+|Commit|Date|Author|Message|
+|---|---|---|---|
+| b85690f | <span style="white-space:nowrap;">2025-03-13</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  update version
+| 03017cb | <span style="white-space:nowrap;">2025-03-17</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  Merge branch 'master' into develop
+| 5ff3a45 | <span style="white-space:nowrap;">2026-03-13</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  (HEAD -> release/8.1, origin/develop, develop) update nuget packages and scripts
+****
+
 # Release 8.0
 
 * Updated powershell scripts to latest versions from coeus/shoppingcart-api
